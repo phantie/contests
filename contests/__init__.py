@@ -2,6 +2,8 @@
 
 
 __all__ = ('some', 'every')
+__version__ = '0.1'
+
 
 class InteriorMut:
     def __init__(self, value):

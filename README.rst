@@ -17,6 +17,9 @@ What?
     assert every([1, 2, 3, 4, 5]) > 0
     assert some('bbbbabbb') != 'b'
 
+Install:
+
+    pip install git+https://github.com/phantie/contests.git -U
 
 Import:
 
