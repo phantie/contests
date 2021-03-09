@@ -22,21 +22,18 @@ class MagicMeths(type):
 
             attrs[methname] = bake_in(methname)
 
+        attrs['__getattr__'] = attrs['get_wrap']
+
         return super().__new__(cls, name, bases, attrs)
 
-class some(InteriorMut, metaclass = MagicMeths):
-    def __getattr__(self, name):
-        return self.get_wrap(name)
 
+class some(InteriorMut, metaclass = MagicMeths):
     def get_wrap(self, name):
         def wrap(*args, **kwargs):
             return any(getattr(_, name)(*args, **kwargs) for _ in self.value)
         return wrap
 
 class every(InteriorMut, metaclass = MagicMeths):
-    def __getattr__(self, name):
-        return self.get_wrap(name)
-
     def get_wrap(self, name):
         def wrap(*args, **kwargs):
             return all(getattr(_, name)(*args, **kwargs) for _ in self.value)
