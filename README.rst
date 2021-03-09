@@ -18,9 +18,12 @@ What?
     assert some('bbbbabbb') != 'b'
 
 Install:
+::
 
     pip install git+https://github.com/phantie/contests.git -U
 
+
 Import:
+::
 
     from contests import some, every
