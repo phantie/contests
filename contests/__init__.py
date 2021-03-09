@@ -1,5 +1,8 @@
 'Content tests'
 
+
+__all__ = ('some', 'every')
+
 class InteriorMut:
     def __init__(self, value):
         self.value = value
@@ -7,12 +10,19 @@ class InteriorMut:
     def __str__(self):
         return f'{self.__class__.__name__}<{self.value}>'
 
+class MagicMeths(type):
+    def __new__(cls, name, bases, attrs):
+        for magicmeth in ('eq', 'ne', 'lt', 'gt', 'ge', 'le'):
+            methname = f'__{magicmeth}__'
 
-class MagicMeths: ...
-    # __eq__ = lambda self, other: 
-    # __ne__ = lambda self, other: 
+            def bake_in(methname):
+                return lambda self, other: self.get_wrap(methname)(other)
 
-class some(InteriorMut, MagicMeths):
+            attrs[methname] = bake_in(methname)
+
+        return super().__new__(cls, name, bases, attrs)
+
+class some(InteriorMut, metaclass = MagicMeths):
     def __getattr__(self, name):
         return self.get_wrap(name)
 
@@ -21,7 +31,7 @@ class some(InteriorMut, MagicMeths):
             return any(getattr(_, name)(*args, **kwargs) for _ in self.value)
         return wrap
 
-class every(InteriorMut, MagicMeths):
+class every(InteriorMut, metaclass = MagicMeths):
     def __getattr__(self, name):
         return self.get_wrap(name)
 
@@ -29,13 +39,3 @@ class every(InteriorMut, MagicMeths):
         def wrap(*args, **kwargs):
             return all(getattr(_, name)(*args, **kwargs) for _ in self.value)
         return wrap
-
-assert any(i.isupper() for i in 'ABC') == \
-       some('ABC').isupper() == \
-       True
-
-assert all(i.islower() for i in 'one') == \
-       every('one').islower() == \
-       True
-
-# assert every('111') == '1'
