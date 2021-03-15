@@ -1,13 +1,18 @@
 'Content tests'
 
+from collections.abc import Iterable
 
 __all__ = ('some', 'every')
 __version__ = '0.1'
 
 
 class InteriorMut:
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, *values):
+        assert len(values) > 0
+        if len(values) == 1 and isinstance(values[0], Iterable):
+            self.value = values[0]
+        else:
+            self.value = values
 
     def __str__(self):
         return f'{self.__class__.__name__}<{self.value}>'

@@ -17,6 +17,10 @@ What?
     assert every([1, 2, 3, 4, 5]) > 0
     assert some('bbbbabbb') != 'b'
 
+    assert some('(', ')') == '('
+    assert some(1) == 1
+    assert some([1]) == 1
+
 Install:
 ::
 
