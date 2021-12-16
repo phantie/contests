@@ -18,8 +18,11 @@ What?
     assert some('bbbbabbb') != 'b'
 
     assert some('(', ')') == '('
-    assert some(1) == 1
+    assert some[1,] == 1
     assert some([1]) == 1
+
+    assert some(([], -1, 0))(bool)
+    assert some[[], -1, 0](bool)
 
 Install:
 ::

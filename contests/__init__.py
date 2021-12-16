@@ -7,15 +7,15 @@ __version__ = '0.1'
 
 
 class InteriorMut:
-    def __init__(self, *values):
-        assert len(values) > 0
-        if len(values) == 1 and isinstance(values[0], Iterable):
-            self.value = values[0]
-        else:
-            self.value = values
+    def __init__(self, value):
+        self.value = value
 
     def __str__(self):
         return f'{self.__class__.__name__}<{self.value}>'
+
+    def __class_getitem__(cls, item):
+        return cls(item)
+
 
 class MagicMeths(type):
     def __new__(cls, name, bases, attrs):
@@ -37,9 +37,14 @@ class some(InteriorMut, metaclass = MagicMeths):
         def wrap(*args, **kwargs):
             return any(getattr(_, name)(*args, **kwargs) for _ in self.value)
         return wrap
+    
+    __call__ = lambda self, lam: any(lam(_) for _ in self.value)
+
 
 class every(InteriorMut, metaclass = MagicMeths):
     def get_wrap(self, name):
         def wrap(*args, **kwargs):
             return all(getattr(_, name)(*args, **kwargs) for _ in self.value)
         return wrap
+
+    __call__ = lambda self, lam: all(lam(_) for _ in self.value)
