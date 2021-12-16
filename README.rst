@@ -4,7 +4,7 @@ What?
 .. code:: python
 
     assert any(i.isupper() for i in 'ABC') == \
-        some('ABC').isupper() == \
+        some('Abc').isupper() == \
         True
 
     assert all(i.islower() for i in 'one') == \
@@ -17,7 +17,7 @@ What?
     assert every([1, 2, 3, 4, 5]) > 0
     assert some('bbbbabbb') != 'b'
 
-    assert some('(', ')') == '('
+    assert some['(', ')'] == '('
     assert some[1,] == 1
     assert some([1]) == 1
 
