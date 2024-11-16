@@ -19,7 +19,7 @@ def test_abs_every():
 def test_every_logic():
     assert every[True, True] & True
     assert every[True, True] == True
-    assert every[True, 1, 2.71828459045]
+    assert every[True, 1, 2.71828459045]()
 
 def test_every_arithmetic():
     assert every[5, 7.0, 9] // 2
