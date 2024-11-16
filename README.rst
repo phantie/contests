@@ -1,5 +1,3 @@
-What?
-=============
 
 .. code:: python
 
@@ -27,7 +25,7 @@ Install:
 Import:
 ::
 
-    from contests import some, every
+    from contests import some, every, some_not, noone
 
 
 
