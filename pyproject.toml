@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "contests"
+version = "0.3.0"
+description = "Concise predicative testing of iterables"
+authors = ["phantie <funtom1605@gmail.com>"]
+license = "MIT"
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
