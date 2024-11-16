@@ -3,26 +3,20 @@ What?
 
 .. code:: python
 
-    assert any(i.isupper() for i in 'ABC') == \
-        some('Abc').isupper() == \
-        True
+    from contests import some, every, some_not, noone
 
-    assert all(i.islower() for i in 'one') == \
-        every('one').islower() == \
-        True
+    assert any(i.isupper() for i in 'Abc') == some('Abc').isupper()
+    assert all(i.islower() for i in 'one') == every('one').islower()
+    assert some_not('Abc').islower()
+    assert noone('abc').islower()
 
-    assert every('111') == '1'
     assert some([1, 1, 1, 2, 1]) == 2
-    assert every([1, 2, 3, 4, 5]) <= 5
     assert every([1, 2, 3, 4, 5]) > 0
     assert some('bbbbabbb') != 'b'
 
     assert some['(', ')'] == '('
-    assert some[1,] == 1
     assert some([1]) == 1
 
-    assert some(([], -1, 0))(bool)
-    assert some[[], -1, 0](bool)
 
 Install:
 ::
@@ -34,3 +28,6 @@ Import:
 ::
 
     from contests import some, every
+
+
+
