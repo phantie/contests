@@ -19,13 +19,5 @@
 Install:
 ::
 
-    pip install git+https://github.com/phantie/contests.git -U
-
-
-Import:
-::
-
-    from contests import some, every, some_not, noone
-
-
+    pip install git+https://github.com/phantie/contests.git
 
